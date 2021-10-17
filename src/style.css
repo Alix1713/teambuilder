@@ -1,0 +1,9 @@
+body{
+    background-color:rgb(157, 188, 245);
+}
+
+.navbar{
+    background-image: url(title.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
