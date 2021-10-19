@@ -44,7 +44,7 @@ inquirer
                     teamMembers.push(newIntern)
                 })
             } else if (response === 'Enginner') {
-                addEnginner().then(enginner => {
+                addEnginner().then(engineer => {
                     const newEngineer = new engineer(engineer.engineer, engineer.github, engineer.emailengineer, engineer.idengineer)
                     teamMembers.push(newEngineer)
                 })
