@@ -1,0 +1,23 @@
+{
+  "name": "teambuilder",
+  "version": "1.0.0",
+  "description": "**What is does**\r This is a team builder, you input your team and it builds you a project board with everyone's information.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alix1713/teambuilder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alix1713/teambuilder/issues"
+  },
+  "homepage": "https://github.com/Alix1713/teambuilder#readme"
+}

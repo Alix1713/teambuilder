@@ -8,7 +8,6 @@ describe('employee', () => {
         expect(employeeTest.getMockid()).toBe('a mock id');
         expect(employeeTest.getMockemail()).toBe('a mock email');
     });
-
     // class employee {
     //     constructor(name, id, email) {
     //         this.name = name;

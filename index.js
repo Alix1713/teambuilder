@@ -140,13 +140,13 @@ const generateTemplate = (data) => {
                 <a class="navbar-brand" href="#">
                     <!--make an id to style font and text size in css-->
                     <img src="icon.jpg" alt="" width="170" height="100" class="d-inline-block align-text-top">
-                    ${data.projectname}
+                  Team Builder
                 </a>
             </div>
         </nav>
         <div class="card text-center">
             <div class="card-header">
-            ${data.does}
+            A info board for your team!
                 <!--info-->
             </div>
         </div>
@@ -176,13 +176,13 @@ const generateTemplate = (data) => {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
-                                class="d-inline-block align-text-top">Engineer:</h5>
+                                class="d-inline-block align-text-top">Engineer:${data.idengineer}</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID:</li>
-                            <li class="list-group-item">Email:</li>
+                            <li class="list-group-item">ID:${data.idengineer}</li>
+                            <li class="list-group-item">Email:${data.emailengineer}</li>
                         </ul>
                         <div class="card-body">
-                            <a href="https://github.com/" class="card-link">GitHub</a>
+                            <a href="https://github.com/" class="card-link">GitHub: ${data.github}</a>
                             <!--github-->
                         </div>
                     </div>
@@ -192,13 +192,13 @@ const generateTemplate = (data) => {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
-                                class="d-inline-block align-text-top">Engineer:</h5>
+                                class="d-inline-block align-text-top">Engineer:${data.enginner}</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID:</li>
-                            <li class="list-group-item">Email:</li>
+                            <li class="list-group-item">ID:${data.idengineer}</li>
+                            <li class="list-group-item">Email:${data.emailengineer}</li>
                         </ul>
                         <div class="card-body">
-                            <a href="https://github.com/" class="card-link">GitHub</a>
+                            <a href="https://github.com/" class="card-link">GitHub: ${data.github}</a>
                         </div>
                     </div>
                 </div>
@@ -207,13 +207,13 @@ const generateTemplate = (data) => {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
-                                class="d-inline-block align-text-top">Engineer:</h5>
+                                class="d-inline-block align-text-top">Engineer:${data.engineer}</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID:</li>
-                            <li class="list-group-item">Email:</li>
+                            <li class="list-group-item">ID:${data.idengineer}</li>
+                            <li class="list-group-item">Email:${data.emailengineer}</li>
                         </ul>
                         <div class="card-body">
-                            <a href="https://github.com/" class="card-link">GitHub</a>
+                            <a href="https://github.com/" class="card-link">GitHub: ${data.github}</a>
                         </div>
                     </div>
                 </div>
@@ -222,11 +222,11 @@ const generateTemplate = (data) => {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
-                                class="d-inline-block align-text-top">Intern:</h5>
+                                class="d-inline-block align-text-top">Intern:${data.intern}</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID:</li>
-                            <li class="list-group-item">Email:</li>
-                            <li class="list-group-item">University:</li>
+                            <li class="list-group-item">ID:${data.idintern}</li>
+                            <li class="list-group-item">Email:${data.emailintern}</li>
+                            <li class="list-group-item">University:${data.school}</li>
                         </ul>
                     </div>
                 </div>
