@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Alix1713/teambuilder/issues"
   },
-  "homepage": "https://github.com/Alix1713/teambuilder#readme"
+  "homepage": "https://github.com/Alix1713/teambuilder#readme",
+  "dependencies": {
+    "jest": "^27.3.1"
+  }
 }
