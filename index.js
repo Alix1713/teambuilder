@@ -180,6 +180,34 @@ const generateTemplate = (data) => {
     });
     return interns;
   }
+  function renderEngineers(data) {
+    console.log(data);
+    let engineers = "";
+    data.forEach((employee) => {
+      if (employee.getRole() === "Engineer") {
+        engineers =
+          engineers +
+          `
+          <div class="col-sm-6">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
+                              class="d-inline-block align-text-top">Engineer:${employee.getName()}</h5>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item">ID:${employee.getId()}</li>
+                          <li class="list-group-item">Email:${employee.getEmail()}</li>
+                      </ul>
+                      <div class="card-body">
+                          <a href="https://github.com/" class="card-link">GitHub: ${employee.getGithub()}</a>
+                          <!--github-->
+                      </div>
+                  </div>
+              </div>
+          </div>`;
+      }
+    });
+    return engineers;
+  }
   return (
     ` <!DOCTYPE html>
     <html>
@@ -228,53 +256,11 @@ const generateTemplate = (data) => {
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
-                                class="d-inline-block align-text-top">Engineer:${data.idengineer}</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID:${data.idengineer}</li>
-                            <li class="list-group-item">Email:${data.emailengineer}</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="https://github.com/" class="card-link">GitHub: ${data.github}</a>
-                            <!--github-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
-                                class="d-inline-block align-text-top">Engineer:${data.enginner}</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID:${data.idengineer}</li>
-                            <li class="list-group-item">Email:${data.emailengineer}</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="https://github.com/" class="card-link">GitHub: ${data.github}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
-                                class="d-inline-block align-text-top">Engineer:${data.engineer}</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID:${data.idengineer}</li>
-                            <li class="list-group-item">Email:${data.emailengineer}</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="https://github.com/" class="card-link">GitHub: ${data.github}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+ <div class="row">
+ ` +
+    renderEngineers(data) +
+    `
+  
       ` +
     renderInterns(data) +
     `
