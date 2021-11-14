@@ -1,129 +1,186 @@
 //node index.js
 //fs.readfile
 
-const fs = require('fs');
-const inquirer = require('inquirer');
-const Manager = require('./lib/Manager');
-const teamMembers = []
+const fs = require("fs");
+const inquirer = require("inquirer");
+const Manager = require("./lib/Manager");
+const teamMembers = [];
+const Intern = require("./lib/Intern");
+const Engineer = require("./lib/Engineer");
+const path = require("path");
 //these are my prompts in terminal
 inquirer
-    .prompt([
-        {
-            // manager
-            type: 'input',
-            message: 'Project Managers Name:',
-            name: 'manager',
-        },
-        {
-            //ID
-            type: 'input',
-            message: 'ID:',
-            name: 'idmanager',
-        },
-        {
-            //Email
-            type: 'input',
-            message: 'Email: ',
-            name: 'emailmanager',
-        },
-        {
-            //Office Number
-            type: 'input',
-            message: 'Office Phone:',
-            name: 'phonenumber',
-        },
-    ])
+  .prompt([
+    {
+      // manager
+      type: "input",
+      message: "Project Managers Name:",
+      name: "manager",
+    },
+    {
+      //ID
+      type: "input",
+      message: "ID:",
+      name: "idmanager",
+    },
+    {
+      //Email
+      type: "input",
+      message: "Email: ",
+      name: "emailmanager",
+    },
+    {
+      //Office Number
+      type: "input",
+      message: "Office Phone:",
+      name: "phonenumber",
+    },
+  ])
 
-    .then((data) => {
-        const newManager = new Manager(data.manager, data.idmanager, data.emailmanager, data.phonenumber)
-        teamMembers.push(newManager) //pushes the new manager into the array of team members
-        addTeammate().then((response) => {
-            if (response === 'Intern') {
-                addintern().then(intern => {
-                    const newIntern = new intern(intern.intern, intern.school, intern.emailintern, intern.idintern)
-                    teamMembers.push(newIntern)
-                })
-            } else if (response === 'Enginner') {
-                addEnginner().then(engineer => {
-                    const newEngineer = new engineer(engineer.engineer, engineer.github, engineer.emailengineer, engineer.idengineer)
-                    teamMembers.push(newEngineer)
-                })
-            } else if (response === 'Exit') {
-                //needs exit
+  .then((data) => {
+    const newManager = new Manager(
+      data.manager,
+      data.idmanager,
+      data.emailmanager,
+      data.phonenumber
+    );
+    teamMembers.push(newManager); //pushes the new manager into the array of team members
+    function anotherTeam() {
+      addTeammate().then((response) => {
+        console.log(response);
+        if (response.userchoice === "Intern") {
+          addIntern().then((intern) => {
+            const newIntern = new Intern(
+              intern.intern,
+              intern.school,
+              intern.emailintern,
+              intern.idintern
+            );
+
+            teamMembers.push(newIntern);
+            anotherTeam();
+          });
+        } else if (response.userchoice === "Engineer") {
+          addEngineer().then((engineer) => {
+            const newEngineer = new Engineer(
+              engineer.engineer,
+              engineer.github,
+              engineer.emailengineer,
+              engineer.idengineer
+            );
+            teamMembers.push(newEngineer);
+            anotherTeam();
+          });
+        } else if (response.userchoice === "Exit") {
+          const dataContent = generateTemplate(teamMembers);
+          fs.writeFile(
+            path.join(__dirname, "/dist/index.html"),
+            dataContent,
+            (error) => {
+              console.log(error);
             }
-        })
-        const dataContent = generateTemplate(data)
-        fs.writeFile('index.html', dataContent, error => {
-            console.log(error)
-        });
-
-    })
+          );
+        }
+      });
+    }
+    anotherTeam();
+  });
 
 function addTeammate() {
-    return inquirer.prompt([
-        {
-            type: 'list',
-            message: 'Choose an option',
-            name: 'userchoice',
-            choices: ['Intern', 'Engineer', 'Exit'],
-        }
-    ])
-
+  return inquirer.prompt([
+    {
+      type: "list",
+      message: "Choose an option",
+      name: "userchoice",
+      choices: ["Intern", "Engineer", "Exit"],
+    },
+  ]);
 }
 function addIntern() {
-    return inquirer.prompt([
-        {
-            type: 'input',
-            message: 'Interns Name:',
-            name: 'intern',
-        },
-        {
-            type: 'input',
-            message: 'School:',
-            name: 'school',
-        },
-        {
-            type: 'input',
-            message: 'Email: ',
-            name: 'emailintern',
-        },
-        {
-            type: 'input',
-            message: 'ID:',
-            name: 'idintern',
-        },
-    ])
+  return inquirer.prompt([
+    {
+      type: "input",
+      message: "Interns Name:",
+      name: "intern",
+    },
+    {
+      type: "input",
+      message: "School:",
+      name: "school",
+    },
+    {
+      type: "input",
+      message: "Email: ",
+      name: "emailintern",
+    },
+    {
+      type: "input",
+      message: "ID:",
+      name: "idintern",
+    },
+  ]);
+}
+function addmoreTeammate() {
+  return inquirer.prompt([
+    {
+      type: "list",
+      message: "Choose an option",
+      name: "userchoice",
+      choices: ["Intern", "Engineer", "Exit"],
+    },
+  ]);
 }
 function addEngineer() {
-    return inquirer.prompt([
-        {
-            type: 'input',
-            message: 'Engineers Name:',
-            name: 'engineer',
-        },
-        {
-            type: 'input',
-            message: 'GitHub Url:',
-            name: 'github',
-        },
-        {
-            type: 'input',
-            message: 'Email: ',
-            name: 'emailengineer',
-        },
-        {
-            type: 'input',
-            message: 'ID:',
-            name: 'idengineer',
-        },
-    ])
+  return inquirer.prompt([
+    {
+      type: "input",
+      message: "Engineers Name:",
+      name: "engineer",
+    },
+    {
+      type: "input",
+      message: "GitHub Url:",
+      name: "github",
+    },
+    {
+      type: "input",
+      message: "Email: ",
+      name: "emailengineer",
+    },
+    {
+      type: "input",
+      message: "ID:",
+      name: "idengineer",
+    },
+  ]);
 }
 
-
-
-
-
 const generateTemplate = (data) => {
+  console.log(data);
+  function renderInterns(data) {
+    let interns = "";
+    data.forEach((employee) => {
+      if (employee.getRole() === "Intern") {
+        interns =
+          interns +
+          ` <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
+                        class="d-inline-block align-text-top">Intern:${employee.getName()}</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID:${employee.getId()}</li>
+                    <li class="list-group-item">Email:${employee.getEmail()}</li>
+                    <li class="list-group-item">University:${employee.getSchool()}</li>
+                </ul>
+            </div>
+        </div>
+    </div>`;
+      }
+    });
+    return interns;
+  }
+  return (
     ` <!DOCTYPE html>
     <html>
     <title>Team Builder</title>
@@ -156,15 +213,15 @@ const generateTemplate = (data) => {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
-                                class="d-inline-block align-text-top">Manager: ${data.manager}</h5>
+                                class="d-inline-block align-text-top">Manager: ${data[0].name}</h5>
                         <!--get role-->
                         <!--change images-->
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID: ${data.idmanager}</li>
+                            <li class="list-group-item">ID: ${data[0].id}</li>
                             <!--get id-->
-                            <li class="list-group-item">Email: ${data.emailmanager}</li>
+                            <li class="list-group-item">Email: ${data[0].email}</li>
                             <!--get email-->
-                            <li class="list-group-item">Office #: ${data.phonenumber}</li>
+                            <li class="list-group-item">Office #: ${data[0].phone}</li>
                             <!--get office #-->
                         </ul>
                     </div>
@@ -218,21 +275,12 @@ const generateTemplate = (data) => {
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><img src="icon2.png" alt="" width="100" height="100"
-                                class="d-inline-block align-text-top">Intern:${data.intern}</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ID:${data.idintern}</li>
-                            <li class="list-group-item">Email:${data.emailintern}</li>
-                            <li class="list-group-item">University:${data.school}</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      ` +
+    renderInterns(data) +
+    `
         </div>
     </body>
     
     </html>`
-}
+  );
+};
