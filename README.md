@@ -3,9 +3,10 @@
 
 **What is does**
 This is a team builder, you input your team and it builds you a project board with everyone's information.
-
+Open your command line type in node index.js and follow the prompts.
 
 ![Code Snippet](./src/codesnip.png)
+Simple Classes used
 
 
 ## Built With
@@ -18,7 +19,7 @@ This is a team builder, you input your team and it builds you a project board wi
 ## Deployed Link
 
 * [Team Build](https://alix1713.github.io/teambuilder/)
-* [YouTube Link](https..//)
+* [YouTube Link](https://youtu.be/GgIQ5ips1as)
 
 ## Author
 * **Alix Friedman** 
